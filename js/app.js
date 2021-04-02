@@ -57,7 +57,8 @@ export default class Sketch {
     this.fpsInterval = 0;
     this.startTime = 0;
     if (screen.width <= 500) {
-      this.startAnimating(20);
+      this.render();
+      this.stop();
     } else {
       this.startAnimating(60);
     }
@@ -146,16 +147,16 @@ export default class Sketch {
     this.scene.add(this.plane);
   }
 
-  // stop() {
-  //   this.isPlaying = false;
-  // }
+  stop() {
+    this.isPlaying = false;
+  }
 
-  // play() {
-  //   if (!this.isPlaying) {
-  //     this.render();
-  //     this.isPlaying = true;
-  //   }
-  // }
+  play() {
+    if (!this.isPlaying) {
+      this.render();
+      this.isPlaying = true;
+    }
+  }
 
   render() {
     if (!this.isPlaying) return;
