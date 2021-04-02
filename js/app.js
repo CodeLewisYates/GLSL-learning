@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import fragment from "./shader/fragment.glsl";
 import vertex from "./shader/vertex.glsl";
-let OrbitControls = require("three-orbit-controls")(THREE);
+//let OrbitControls = require("three-orbit-controls")(THREE);
 
 export default class Sketch {
   constructor(options) {
@@ -37,7 +37,7 @@ export default class Sketch {
     //   1000
     // );
     this.camera.position.set(0, 0, 1);
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    //this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.time = 0;
 
     this.isPlaying = true;
