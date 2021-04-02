@@ -44,10 +44,40 @@ export default class Sketch {
 
     this.addObjects();
     this.resize();
-    this.render();
+    //this.render(); //
     this.setupResize();
     this.mouseEvents();
     // this.settings();
+
+    // limiting fps variables
+    this.then = 0;
+    this.now = 0;
+    this.fps = 0;
+    this.elapsed = 0;
+    this.fpsInterval = 0;
+    this.startTime = 0;
+    if (screen.width <= 500) {
+      this.startAnimating(20);
+    } else {
+      this.startAnimating(60);
+    }
+  }
+
+  startAnimating(fps) {
+    this.fpsInterval = 1000 / fps;
+    this.then = Date.now();
+    this.startTime = this.then;
+    this.animate();
+  }
+
+  animate() {
+    requestAnimationFrame(this.animate.bind(this));
+    this.now = Date.now();
+    this.elapsed = this.now - this.then;
+    if (this.elapsed > this.fpsInterval) {
+      this.then = this.now - (this.elapsed % this.fpsInterval);
+      this.render();
+    }
   }
 
   mouseEvents() {
@@ -116,22 +146,22 @@ export default class Sketch {
     this.scene.add(this.plane);
   }
 
-  stop() {
-    this.isPlaying = false;
-  }
+  // stop() {
+  //   this.isPlaying = false;
+  // }
 
-  play() {
-    if (!this.isPlaying) {
-      this.render();
-      this.isPlaying = true;
-    }
-  }
+  // play() {
+  //   if (!this.isPlaying) {
+  //     this.render();
+  //     this.isPlaying = true;
+  //   }
+  // }
 
   render() {
     if (!this.isPlaying) return;
     this.time += 0.05;
     this.material.uniforms.time.value = this.time;
-    requestAnimationFrame(this.render.bind(this));
+    //requestAnimationFrame(this.render.bind(this));
     this.renderer.render(this.scene, this.camera);
   }
 }
