@@ -1,0 +1,19 @@
+{
+  "name": "sphere",
+  "version": "1.0.0",
+  "description": "",
+  "default": "index.html",
+  "scripts": {
+    "build": "parcel build index.html --dist-dir build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.0.0-beta.2",
+    "three": "^0.127.0",
+    "three-orbit-controls": "^82.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-glsl": "^2.0.0-beta.2"
+  }
+}
